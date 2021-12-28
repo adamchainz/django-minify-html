@@ -1,0 +1,6 @@
+coverage
+django
+minify-html
+pytest
+pytest-django
+pytest-randomly
