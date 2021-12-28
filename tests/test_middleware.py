@@ -15,7 +15,10 @@ class HtmxMiddlewareTests(SimpleTestCase):
         self.response = HttpResponse(self.basic_html)
 
         def get_response(request: HttpRequest) -> HttpResponse:
-            return self.response
+            response = self.response
+            if not getattr(response, "streaming", False):
+                response["Content-Length"] = len(response.content)
+            return response
 
         self.middleware = MinifyHtmlMiddleware(get_response)
 
@@ -45,6 +48,7 @@ class HtmxMiddlewareTests(SimpleTestCase):
         response = self.middleware(self.request)
 
         assert response.content == self.basic_html_minified
+        assert response["Content-Length"] == str(len(self.basic_html_minified))
 
     def test_multipart_content_type(self):
         self.response["Content-Type"] = "text/html; thingy=that; charset=utf-8"
@@ -52,6 +56,17 @@ class HtmxMiddlewareTests(SimpleTestCase):
         response = self.middleware(self.request)
 
         assert response.content == self.basic_html_minified
+
+    def test_no_content_length(self):
+        def get_response(request: HttpRequest) -> HttpResponse:
+            return HttpResponse(self.basic_html)
+
+        middleware = MinifyHtmlMiddleware(get_response)
+
+        response = middleware(self.request)
+
+        assert response.content == self.basic_html_minified
+        assert "Content-Length" not in response
 
     def test_subclass_different_args(self):
         class NoCss(MinifyHtmlMiddleware):
