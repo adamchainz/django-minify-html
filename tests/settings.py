@@ -9,10 +9,15 @@ ALLOWED_HOSTS: list[str] = []
 DATABASES: dict[str, dict[str, Any]] = {}
 
 INSTALLED_APPS = [
+    "tests",
     "django_minify_html",
 ]
 
-MIDDLEWARE: list[str] = []
+MIDDLEWARE = [
+    "django_minify_html.middleware.MinifyHtmlMiddleware",
+]
+
+ROOT_URLCONF = "tests.urls"
 
 TEMPLATES = [
     {
