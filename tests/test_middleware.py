@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from django.http import HttpRequest, HttpResponse
-from django.test import RequestFactory, SimpleTestCase, override_settings
+from django.test import SimpleTestCase, override_settings
 
 from django_minify_html.middleware import MinifyHtmlMiddleware
 from tests.views import basic_html, basic_html_minified
@@ -19,20 +19,6 @@ class NoAdminMiddleware(MinifyHtmlMiddleware):
 
 
 class HtmxMiddlewareTests(SimpleTestCase):
-    request_factory = RequestFactory()
-
-    def setUp(self):
-        self.request = self.request_factory.get("/")
-        self.response = HttpResponse(basic_html)
-
-        def get_response(request: HttpRequest) -> HttpResponse:
-            response = self.response
-            if not getattr(response, "streaming", False):
-                response["Content-Length"] = len(response.content)
-            return response
-
-        self.middleware = MinifyHtmlMiddleware(get_response)
-
     def test_streaming_response(self):
         response = self.client.get("/streaming/")
 
