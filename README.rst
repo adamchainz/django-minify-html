@@ -99,8 +99,10 @@ For example, to preserve comments after minification:
 (This example uses Python 3.9’s `dictionary merge operator <https://docs.python.org/3.9/whatsnew/3.9.html#dictionary-merge-update-operators>`__.)
 
 The middleware applies to all non-streaming, non-encoded HTML responses.
-To restrict this logic, you can subclass, override the ``should_minify()`` method, and use your subclass.
-The ``should_minify()`` method accepts the ``request`` and ``response``, and returns a ``bool``.
+You can skip it on individual views with the ``@no_html_minification`` decorator, documented below.
+
+To restrict it more broadly, you can use a subclass with an overriden ``should_minify()`` method.
+This method accepts the ``request`` and ``response``, and returns a ``bool``.
 For example, to avoid minification of URL’s with the URL prefix ``/admin/``:
 
 .. code-block:: python
@@ -119,6 +121,22 @@ For example, to avoid minification of URL’s with the URL prefix ``/admin/``:
 Note that responses are minified even when ``DEBUG`` is ``True``.
 This is recommended because HTML minification can reveal bugs in your templates, so it’s best to always work with your HTML as it will appear in production.
 Minified HTML is hard to read with “View Source” - it’s best to rely on the inspector in your browser’s developer tools.
+
+``django_minify_html.decorators.no_html_minification``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Apply this decorator to views for which you want to skip HTML minification.
+
+.. code-block:: python
+
+    from django.shortcuts import render
+
+    from django_minify_html.decorators import no_html_minification
+
+
+    @no_html_minification
+    def example_view(request):
+        return render(request, "problematic-template.html")
 
 Motivation
 ----------

@@ -1,106 +1,70 @@
 from __future__ import annotations
 
-from django.http import HttpRequest, HttpResponse, StreamingHttpResponse
-from django.test import RequestFactory, SimpleTestCase
+from django.http import HttpRequest, HttpResponse
+from django.test import SimpleTestCase, override_settings
 
 from django_minify_html.middleware import MinifyHtmlMiddleware
+from tests.views import basic_html, basic_html_minified
+
+
+class NoCssMiddleware(MinifyHtmlMiddleware):
+    minify_args: dict[str, bool] = {}
+
+
+class NoAdminMiddleware(MinifyHtmlMiddleware):
+    def should_minify(self, request: HttpRequest, response: HttpResponse) -> bool:
+        return super().should_minify(request, response) and not request.path.startswith(
+            "/admin/"
+        )
 
 
 class HtmxMiddlewareTests(SimpleTestCase):
-    basic_html = b"<!doctype html><html><body><p>Hi</p></body></html>"
-    basic_html_minified = b"<!doctypehtml><body><p>Hi"
-
-    request_factory = RequestFactory()
-
-    def setUp(self):
-        self.request = self.request_factory.get("/")
-        self.response = HttpResponse(self.basic_html)
-
-        def get_response(request: HttpRequest) -> HttpResponse:
-            response = self.response
-            if not getattr(response, "streaming", False):
-                response["Content-Length"] = len(response.content)
-            return response
-
-        self.middleware = MinifyHtmlMiddleware(get_response)
-
     def test_streaming_response(self):
-        self.response = StreamingHttpResponse(iter([self.basic_html]))
+        response = self.client.get("/streaming/")
 
-        response = self.middleware(self.request)
-
-        content = b"".join(response.streaming_content)
-        assert content == self.basic_html
+        assert response.getvalue() == basic_html
 
     def test_encoded_response(self):
-        self.response["Content-Encoding"] = "zabble"
+        response = self.client.get("/encoded/")
 
-        response = self.middleware(self.request)
-
-        assert response.content == self.basic_html
+        assert response.content == basic_html
 
     def test_text_response(self):
-        self.response["Content-Type"] = "text/plain"
+        response = self.client.get("/text/")
 
-        response = self.middleware(self.request)
-
-        assert response.content == self.basic_html
+        assert response.content == basic_html
 
     def test_success(self):
-        response = self.middleware(self.request)
+        response = self.client.get("/html/")
 
-        assert response.content == self.basic_html_minified
-        assert response["Content-Length"] == str(len(self.basic_html_minified))
+        assert response.content == basic_html_minified
+        assert response["Content-Length"] == str(len(basic_html_minified))
 
     def test_multipart_content_type(self):
-        self.response["Content-Type"] = "text/html; thingy=that; charset=utf-8"
+        response = self.client.get("/html-multipart-content-type/")
 
-        response = self.middleware(self.request)
-
-        assert response.content == self.basic_html_minified
+        assert response.content == basic_html_minified
 
     def test_no_content_length(self):
-        def get_response(request: HttpRequest) -> HttpResponse:
-            return HttpResponse(self.basic_html)
+        response = self.client.get("/html-no-content-length/")
 
-        middleware = MinifyHtmlMiddleware(get_response)
-
-        response = middleware(self.request)
-
-        assert response.content == self.basic_html_minified
+        assert response.content == basic_html_minified
         assert "Content-Length" not in response
 
     def test_subclass_different_args(self):
-        class NoCss(MinifyHtmlMiddleware):
-            minify_args = {}
+        with override_settings(MIDDLEWARE=[f"{__name__}.NoCssMiddleware"]):
+            response = self.client.get("/inline-style/")
 
-        orig_content = b"<style>body { background: salmon; }</style>"
-        response = HttpResponse(orig_content)
-
-        def get_response(request: HttpRequest) -> HttpResponse:
-            return response
-
-        middleware = NoCss(get_response)
-
-        response = middleware(self.request)
-
-        assert response.content == orig_content
+        # CSS minfication would collapse spaces
+        assert response.content == b"<style>body { background: salmon; }</style>"
 
     def test_subclass_ignore_path(self):
-        class NoAdmin(MinifyHtmlMiddleware):
-            def should_minify(
-                self, request: HttpRequest, response: HttpResponse
-            ) -> bool:
-                return super().should_minify(
-                    request, response
-                ) and not request.path.startswith("/admin/")
+        with override_settings(MIDDLEWARE=[f"{__name__}.NoAdminMiddleware"]):
+            response = self.client.get("/admin/about/")
 
-        def get_response(request: HttpRequest) -> HttpResponse:
-            return self.response
+        assert response.content == basic_html
 
-        middleware = NoAdmin(get_response)
-        request = self.request_factory.get("/admin/")
+    def test_decorator(self):
+        response = self.client.get("/skip-minification/")
 
-        response = middleware(request)
-
-        assert response.content == self.basic_html
+        assert response.content == basic_html
