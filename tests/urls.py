@@ -9,6 +9,7 @@ urlpatterns = [
     path("encoded/", views.encoded),
     path("text/", views.text),
     path("html/", views.html),
+    path("async/", views.async_),
     path("html-multipart-content-type/", views.html_multipart_content_type),
     path("html-no-content-length/", views.html_no_content_length),
     path("inline-style/", views.inline_style),

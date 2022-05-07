@@ -2,6 +2,8 @@
 History
 =======
 
+* Add async support to the middleware, to reduce overhead on async views.
+
 1.1.0 (2022-04-27)
 ------------------
 

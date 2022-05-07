@@ -30,6 +30,12 @@ def html(request):
     return response
 
 
+async def async_(request):
+    response = HttpResponse(basic_html)
+    response["Content-Length"] = len(basic_html)
+    return response
+
+
 def html_multipart_content_type(request):
     return HttpResponse(
         basic_html, content_type="text/html; thingy=that; charset=utf-8"

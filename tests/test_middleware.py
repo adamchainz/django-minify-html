@@ -18,7 +18,7 @@ class NoAdminMiddleware(MinifyHtmlMiddleware):
         )
 
 
-class HtmxMiddlewareTests(SimpleTestCase):
+class MinifyHtmlMiddlewareTests(SimpleTestCase):
     def test_streaming_response(self):
         response = self.client.get("/streaming/")
 
@@ -36,6 +36,12 @@ class HtmxMiddlewareTests(SimpleTestCase):
 
     def test_success(self):
         response = self.client.get("/html/")
+
+        assert response.content == basic_html_minified
+        assert response["Content-Length"] == str(len(basic_html_minified))
+
+    async def test_async(self):
+        response = await self.async_client.get("/async/")
 
         assert response.content == basic_html_minified
         assert response["Content-Length"] == str(len(basic_html_minified))
