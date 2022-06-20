@@ -91,7 +91,7 @@ For example, to preserve comments after minification:
     from django_minify_html.middleware import MinifyHtmlMiddleware
 
 
-    class ProjectMinifyHtmlMiddleware:
+    class ProjectMinifyHtmlMiddleware(MinifyHtmlMiddleware):
         minify_args = MinifyHtmlMiddleware.minify_args | {
             "keep_comments": True,
         }
@@ -112,7 +112,7 @@ For example, to avoid minification of URL’s with the URL prefix ``/admin/``:
     from django_minify_html.middleware import MinifyHtmlMiddleware
 
 
-    class ProjectMinifyHtmlMiddleware:
+    class ProjectMinifyHtmlMiddleware(MinifyHtmlMiddleware):
         def should_minify(self, request: HttpRequest, response: HttpResponse) -> bool:
             return super().should_minify(request, response) and not request.path.startswith(
                 "/admin/"
