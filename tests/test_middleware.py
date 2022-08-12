@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
+from django.http.response import HttpResponseBase
 from django.test import SimpleTestCase, override_settings
 
 from django_minify_html.middleware import MinifyHtmlMiddleware
@@ -12,7 +13,7 @@ class NoCssMiddleware(MinifyHtmlMiddleware):
 
 
 class NoAdminMiddleware(MinifyHtmlMiddleware):
-    def should_minify(self, request: HttpRequest, response: HttpResponse) -> bool:
+    def should_minify(self, request: HttpRequest, response: HttpResponseBase) -> bool:
         return super().should_minify(request, response) and not request.path.startswith(
             "/admin/"
         )
@@ -55,7 +56,9 @@ class MinifyHtmlMiddlewareTests(SimpleTestCase):
         response = self.client.get("/html-no-content-length/")
 
         assert response.content == basic_html_minified
-        assert "Content-Length" not in response
+        # django-stubs missing method
+        # https://github.com/typeddjango/django-stubs/pull/1099
+        assert "Content-Length" not in response  # type: ignore [operator]
 
     def test_subclass_different_args(self):
         with override_settings(MIDDLEWARE=[f"{__name__}.NoCssMiddleware"]):

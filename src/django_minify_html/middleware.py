@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Any, Callable, Coroutine
+from typing import Awaitable, Callable
 
 import minify_html
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.http.response import HttpResponseBase
 
 
@@ -12,7 +12,13 @@ class MinifyHtmlMiddleware:
     sync_capable = True
     async_capable = True
 
-    def __init__(self, get_response: Callable[[HttpRequest], HttpResponseBase]) -> None:
+    def __init__(
+        self,
+        get_response: (
+            Callable[[HttpRequest], HttpResponseBase]
+            | Callable[[HttpRequest], Awaitable[HttpResponseBase]]
+        ),
+    ) -> None:
         self.get_response = get_response
         if asyncio.iscoroutinefunction(self.get_response):
             # Mark the class as async-capable, but do the actual switch
@@ -25,26 +31,30 @@ class MinifyHtmlMiddleware:
 
     def __call__(
         self, request: HttpRequest
-    ) -> HttpResponseBase | Coroutine[Any, Any, Any]:
+    ) -> HttpResponseBase | Awaitable[HttpResponseBase]:
         if self._is_coroutine:
             return self.__acall__(request)
         response = self.get_response(request)
+        assert isinstance(response, HttpResponseBase)
         self.maybe_minify(request, response)
         return response
 
-    async def __acall__(
-        self, request: HttpRequest
-    ) -> Coroutine[Any, Any, HttpResponseBase]:
-        response = await self.get_response(request)
+    async def __acall__(self, request: HttpRequest) -> HttpResponseBase:
+        result = self.get_response(request)
+        assert not isinstance(result, HttpResponseBase)  # type narrow
+        response = await result
         self.maybe_minify(request, response)
         return response
 
     def maybe_minify(self, request: HttpRequest, response: HttpResponseBase) -> None:
         if self.should_minify(request, response):
+            assert isinstance(response, HttpResponse)
             content = response.content.decode(response.charset)
             minified_content = minify_html.minify(content, **self.minify_args)
             response.content = minified_content
-            if "Content-Length" in response:
+            # django-stubs missing method
+            # https://github.com/typeddjango/django-stubs/pull/1099
+            if "Content-Length" in response:  # type: ignore [operator]
                 response["Content-Length"] = len(minified_content)
 
     minify_args = {
