@@ -1,6 +1,17 @@
 name: Issue
 description: File an issue
 body:
+- type: checkboxes
+  id: resources
+  attributes:
+    label: Not a minify-html bug
+    description: >
+      The **minify-html** package performs the actual minification.
+      If you have problems with the minification, you need to report the bug there.
+      But first, read [minify-html’s minification section](https://github.com/wilsonzlin/minify-html#minification) to ensure that you aren’t misunderstanding what is optional in HTML.
+    options:
+    - label: I am not reporting an issue with minification.
+      required: true
 - type: input
   id: python_version
   attributes:
