@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from django.http import HttpRequest
 from django.http.response import HttpResponseBase
-from django.test import SimpleTestCase, override_settings
+from django.test import override_settings
+from django.test import SimpleTestCase
 
 from django_minify_html.middleware import MinifyHtmlMiddleware
-from tests.views import basic_html, basic_html_minified
+from tests.views import basic_html
+from tests.views import basic_html_minified
 
 
 class NoCssMiddleware(MinifyHtmlMiddleware):

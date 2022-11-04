@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 from functools import wraps
-from typing import Any, Callable, TypeVar, cast
+from typing import Any
+from typing import Callable
+from typing import cast
+from typing import TypeVar
 
 from django.http.response import HttpResponseBase
 

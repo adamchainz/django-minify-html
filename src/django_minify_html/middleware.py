@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Awaitable, Callable
+from typing import Awaitable
+from typing import Callable
 
 import minify_html
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
+from django.http import HttpResponse
 from django.http.response import HttpResponseBase
 
 
