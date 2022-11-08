@@ -58,9 +58,7 @@ class MinifyHtmlMiddlewareTests(SimpleTestCase):
         response = self.client.get("/html-no-content-length/")
 
         assert response.content == basic_html_minified
-        # django-stubs missing method
-        # https://github.com/typeddjango/django-stubs/pull/1099
-        assert "Content-Length" not in response  # type: ignore [operator]
+        assert "Content-Length" not in response
 
     def test_subclass_different_args(self):
         with override_settings(MIDDLEWARE=[f"{__name__}.NoCssMiddleware"]):

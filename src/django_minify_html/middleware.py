@@ -54,9 +54,7 @@ class MinifyHtmlMiddleware:
             content = response.content.decode(response.charset)
             minified_content = minify_html.minify(content, **self.minify_args)
             response.content = minified_content
-            # django-stubs missing method
-            # https://github.com/typeddjango/django-stubs/pull/1099
-            if "Content-Length" in response:  # type: ignore [operator]
+            if "Content-Length" in response:
                 response["Content-Length"] = len(minified_content)
 
     minify_args = {
