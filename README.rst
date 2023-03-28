@@ -81,7 +81,7 @@ The middleware runs ``minify_html.minify()`` on the content of HTML responses.
 This function minifies HTML, and any inline JavaScript and CSS.
 
 The middleware passes keyword arguments to ``minify()`` from its ``minify_args`` attribute, a dictionary of names to values.
-These correspond to the values in the Rust library’s `Cfg structure <https://docs.rs/minify-html/latest/minify_html/struct.Cfg.html>`__, which have defaults in the Python library as visible `in the source <https://github.com/wilsonzlin/minify-html/blob/master/python/src/lib.template.rs>`__.
+These correspond to the values in the Rust library’s `Cfg structure <https://docs.rs/minify-html/latest/minify_html/struct.Cfg.html>`__, which have defaults in the Python library as visible `in the source <https://github.com/wilsonzlin/minify-html/blob/master/python/main/src/lib.rs>`__.
 By default the middleware overrides ``minify_css`` and ``minify_js`` to ``True``.
 If you need to change an argument, subclass the middleware, replace ``minify_args``, and use your subclass.
 For example, to preserve comments after minification:
