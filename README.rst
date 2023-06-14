@@ -23,7 +23,7 @@ Use `minify-html <https://github.com/wilsonzlin/minify-html>`__, the extremely f
 Requirements
 ------------
 
-Python 3.8 to 3.11 supported.
+Python 3.8 to 3.12 supported.
 
 Django 3.2 to 4.2 supported.
 
