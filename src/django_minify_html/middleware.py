@@ -55,7 +55,7 @@ class MinifyHtmlMiddleware:
             minified_content = minify_html.minify(content, **self.minify_args)
             response.content = minified_content
             if "Content-Length" in response:
-                response["Content-Length"] = len(minified_content)
+                response["Content-Length"] = len(response.content)
 
     minify_args = {
         "minify_css": True,
