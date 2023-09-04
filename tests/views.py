@@ -5,8 +5,8 @@ from django.http import StreamingHttpResponse
 
 from django_minify_html.decorators import no_html_minification
 
-basic_html = b"<!doctype html><html><body><p>Hi</p></body></html>"
-basic_html_minified = b"<!doctypehtml><body><p>Hi"
+basic_html = "<!doctype html><html><body><p>Hi 👋</p></body></html>".encode()
+basic_html_minified = "<!doctypehtml><body><p>Hi 👋".encode()
 
 
 def streaming(request):

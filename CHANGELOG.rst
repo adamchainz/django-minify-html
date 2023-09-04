@@ -2,6 +2,10 @@
 Changelog
 =========
 
+* Fix the value in the ``Content-Length`` header to correctly count bytes, rather than unicode characters.
+
+  Thanks to Haydn Greatnews in `PR #143 <https://github.com/adamchainz/django-minify-html/pull/143>`__.
+
 1.6.0 (2023-06-14)
 ------------------
 
