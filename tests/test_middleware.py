@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from django.http import HttpRequest
 from django.http.response import HttpResponseBase
-from django.test import override_settings
 from django.test import SimpleTestCase
+from django.test import override_settings
 
 from django_minify_html.middleware import MinifyHtmlMiddleware
 from tests.views import basic_html
