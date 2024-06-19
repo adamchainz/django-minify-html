@@ -8,11 +8,10 @@ requires = [
 name = "django-minify-html"
 version = "1.7.1"
 description = "Use minify-html, the extremely fast HTML + JS + CSS minifier, with Django."
-readme = { file = "README.rst", content-type = "text/x-rst" }
+readme = "README.rst"
 keywords = [
   "Django",
 ]
-license = { text = "MIT" }
 authors = [
   { name = "Adam Johnson", email = "me@adamj.eu" },
 ]
