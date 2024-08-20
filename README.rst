@@ -150,8 +150,8 @@ At time of writing, it is also unmaintained, with no release since March 2019.
 There are other minifiers out there, but in benchmarks `minify-html <https://github.com/wilsonzlin/minify-html>`__ surpasses them all.
 It’s a really well optimized and tested Rust library, and seems to be the best available HTML minifier.
 
-Some CDN’s provide automatic minification, such as CloudFlare.
-This can be convenient, since it requires no application changes.
+Historically, Cloudflare provided automatic minification (`removed August 2024 <https://community.cloudflare.com/t/deprecating-auto-minify/655677>`__).
+This was convenient at the CDN layer, since it requires no application changes.
 But it adds some overhead: non-minified HTML has to first be transferred to the CDN, and the CDN has to parse the response, and recombine it.
 It also means that you don’t get to see the potential side effects of minification until your code is live.
 Overall it should be faster and more predictable to minify within Django, at the point of HTML generation.
