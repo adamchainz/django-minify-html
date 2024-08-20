@@ -77,3 +77,8 @@ class MinifyHtmlMiddlewareTests(SimpleTestCase):
         response = self.client.get("/skip-minification/")
 
         assert response.content == basic_html
+
+    async def test_decorator_async(self):
+        response = await self.async_client.get("/skip-minification-async/")
+
+        assert response.content == basic_html

@@ -58,3 +58,8 @@ def admin_about(request):
 @no_html_minification
 def skip_minification(request):
     return HttpResponse(basic_html)
+
+
+@no_html_minification
+async def skip_minification_async(request):
+    return HttpResponse(basic_html)

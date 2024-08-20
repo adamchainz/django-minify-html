@@ -6,21 +6,31 @@ from typing import Callable
 from typing import TypeVar
 from typing import cast
 
+from asgiref.sync import iscoroutinefunction
 from django.http.response import HttpResponseBase
 
 ViewFunc = TypeVar("ViewFunc", bound=Callable[..., HttpResponseBase])
 
+_C = TypeVar("_C", bound=Callable[..., Any])
 
-def no_html_minification(view_func: ViewFunc) -> ViewFunc:
+
+def no_html_minification(view_func: _C) -> _C:
     """
     Mark a view function as excluded from minification by MinifyHtmlMiddleware.
     """
 
-    def wrapped_view(*args: Any, **kwargs: Any) -> HttpResponseBase:
-        return view_func(*args, **kwargs)
+    wrapped_view: Callable[..., Any]
+
+    if iscoroutinefunction(view_func):
+
+        async def wrapped_view(*args: Any, **kwargs: Any) -> Any:
+            return await view_func(*args, **kwargs)
+
+    else:
+
+        def wrapped_view(*args: Any, **kwargs: Any) -> Any:
+            return view_func(*args, **kwargs)
 
     wrapped_view.should_minify_html = False  # type: ignore[attr-defined]
-    return cast(
-        ViewFunc,
-        wraps(view_func)(wrapped_view),
-    )
+
+    return cast(_C, wraps(view_func)(wrapped_view))

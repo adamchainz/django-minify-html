@@ -15,4 +15,5 @@ urlpatterns = [
     path("inline-style/", views.inline_style),
     path("admin/about/", views.admin_about),
     path("skip-minification/", views.skip_minification),
+    path("skip-minification-async/", views.skip_minification_async),
 ]
