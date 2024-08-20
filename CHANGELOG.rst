@@ -2,6 +2,9 @@
 Changelog
 =========
 
+1.9.0 (2024-08-20)
+------------------
+
 * Support Django 5.1.
 
 * Extend the ``@no_html_minification`` decorator to support asynchronous views.
