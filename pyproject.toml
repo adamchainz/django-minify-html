@@ -6,7 +6,7 @@ requires = [
 
 [project]
 name = "django-minify-html"
-version = "1.9.0"
+version = "1.10.0"
 description = "Use minify-html, the extremely fast HTML + JS + CSS minifier, with Django."
 readme = "README.rst"
 keywords = [
