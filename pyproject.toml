@@ -45,7 +45,6 @@ urls = { Changelog = "https://github.com/adamchainz/django-minify-html/blob/main
 [dependency-groups]
 test = [
   "coverage[toml]",
-  "django",
   "minify-html",
   "pytest",
   "pytest-django",
