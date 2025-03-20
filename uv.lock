@@ -205,7 +205,7 @@ django52 = [
 ]
 test = [
     { name = "coverage", extra = ["toml"] },
-    { name = "minify-html" },
+    { name = "minify-html-fallback" },
     { name = "pytest" },
     { name = "pytest-django" },
     { name = "pytest-randomly" },
@@ -225,7 +225,7 @@ django51 = [{ name = "django", marker = "python_full_version >= '3.10'", specifi
 django52 = [{ name = "django", marker = "python_full_version >= '3.10'", specifier = ">=5.2a1,<6" }]
 test = [
     { name = "coverage", extras = ["toml"] },
-    { name = "minify-html" },
+    { name = "minify-html-fallback", specifier = ">=0.16.4" },
     { name = "pytest" },
     { name = "pytest-django" },
     { name = "pytest-randomly" },
@@ -259,34 +259,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d7/4b/cbd8e699e64a6f16ca3a8220661b5f83792b3017d0f79807cb8708d33913/iniconfig-2.0.0.tar.gz", hash = "sha256:2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3", size = 4646 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ef/a6/62565a6e1cf69e10f5727360368e451d4b7f58beeac6173dc9db836a5b46/iniconfig-2.0.0-py3-none-any.whl", hash = "sha256:b6a85871a79d2e3b22d2d1b94ac2824226a63c6b741c88f7ae975f18b6778374", size = 5892 },
-]
-
-[[package]]
-name = "minify-html"
-version = "0.15.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/0b/8a/c921cd4b3e364c871be418c1694b315e5fa823eb8180d89f99d9a61aa8fe/minify_html-0.15.0.tar.gz", hash = "sha256:cf4c36b6f9af3b0901bd2a0a29db3b09c0cdf0c38d3dde28e6835bce0f605d37", size = 96948 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/cb/a9/3aaf8fbf5f673892eb9bc8ddedf0f1fc41f9ac0a2178d9b402f96241359d/minify_html-0.15.0-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:afd76ca2dc9afa53b66973a3a66eff9a64692811ead44102aa8044a37872e6e2", size = 2307896 },
-    { url = "https://files.pythonhosted.org/packages/16/1a/42c5710df7272819f200680bbc32a60b9d8c1fe6f93fcae74f15ed333baf/minify_html-0.15.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:f37ce536305500914fd4ee2bbaa4dd05a039f39eeceae45560c39767d99aede0", size = 2164232 },
-    { url = "https://files.pythonhosted.org/packages/80/4a/68bb3628661022a98d047fa036c334c6783bad28eed424d3be9934b4f117/minify_html-0.15.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7e6d4f97cebb725bc1075f225bdfcd824e0f5c20a37d9ea798d900f96e1b80c0", size = 2240953 },
-    { url = "https://files.pythonhosted.org/packages/65/cb/2c07378be27fb06f8e4ff9c45713f93ba278c59654121dfbd05217fc2b7a/minify_html-0.15.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e47197849a1c09a95892d32df3c9e15f6d0902c9ae215e73249b9f5bca9aeb97", size = 2395974 },
-    { url = "https://files.pythonhosted.org/packages/c1/6f/505df9f831723a9c5d4a50e8c14ef925ee1200bdac8a2392a9ff51e96115/minify_html-0.15.0-cp310-none-win_amd64.whl", hash = "sha256:7af72438d3ae6ea8b0a94c038d35c9c22c5f8540967f5fa2487f77b2cdb12605", size = 2382572 },
-    { url = "https://files.pythonhosted.org/packages/d1/97/c58b0d768d5aeea3aceb3312c45a56adc8fca61a08e9a293a63e4ebb5327/minify_html-0.15.0-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:a23a8055e65fa01175ddd7d18d101c05e267410fa5956c65597dcc332c7f91dd", size = 2307981 },
-    { url = "https://files.pythonhosted.org/packages/3f/fd/e159a09eda87b6c932b2a4508f54b2198f3622c2ae2715db8912f885d088/minify_html-0.15.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:597c86f9792437eee0698118fb38dff42b5b4be6d437b6d577453c2f91524ccc", size = 2164161 },
-    { url = "https://files.pythonhosted.org/packages/f3/6a/c22b18ca570c33c3edf895ecf8661501d9e17e9d50c3a2d3ea956f16cd90/minify_html-0.15.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7b2aadba6987e6c15a916a4627b94b1db3cbac65e6ae3613b61b3ab0d2bb4c96", size = 2240915 },
-    { url = "https://files.pythonhosted.org/packages/a0/e2/ed7e62f62a54774c411a0e28ef67a7d1ccb84ab1a933f6b59362c83d78c1/minify_html-0.15.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d4c4ae3909e2896c865ebaa3a96939191f904dd337a87d7594130f3dfca55510", size = 2395989 },
-    { url = "https://files.pythonhosted.org/packages/5d/56/323ba007a5bb42ea375a2bc1c3d60913716e994b4fe56bd2a9046d6e974f/minify_html-0.15.0-cp311-none-win_amd64.whl", hash = "sha256:dc2df1e5203d89197f530d14c9a82067f3d04b9cb0118abc8f2ef8f88efce109", size = 2382515 },
-    { url = "https://files.pythonhosted.org/packages/30/a7/b0a1c3a3c10c00b28732b1d8e54fbe2e0d7f586397592d35952ca7ec156c/minify_html-0.15.0-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:2a9aef71b24c3d38c6bece2db3bf707443894958b01f1c27d3a6459ba4200e59", size = 2307989 },
-    { url = "https://files.pythonhosted.org/packages/09/df/d011e38521551ddab4d31d389691aa5d3eaf19cfbab993a9d366032a6608/minify_html-0.15.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:70251bd7174b62c91333110301b27000b547aa2cc06d4fe6ba6c3f11612eecc9", size = 2164108 },
-    { url = "https://files.pythonhosted.org/packages/0f/5a/9b53f0215237f1693242cd6fbafe73dd88050454f2715b6d5123ca444da0/minify_html-0.15.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1056819ea46e9080db6fed678d03511c7e94c2a615e72df82190ea898dc82609", size = 2240974 },
-    { url = "https://files.pythonhosted.org/packages/a0/ae/786cd6775d8891fe2a4b5774753a00c95fd6ec3013086c92c2970c4371dc/minify_html-0.15.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ea315ad6ac33d7463fac3f313bba8c8d9a55f4811971c203eed931203047e5c8", size = 2395919 },
-    { url = "https://files.pythonhosted.org/packages/90/f0/23ea4cbaff3f83c4f8802bfda2aebbdd02fb84595567aeb86be84f6aa055/minify_html-0.15.0-cp312-none-win_amd64.whl", hash = "sha256:01ea40dc5ae073c47024f02758d5e18e55d853265eb9c099040a6c00ab0abb99", size = 2382578 },
-    { url = "https://files.pythonhosted.org/packages/8d/ee/bde9639cebaa02c8371634d7fc167d566eb84e6eb0ff827e987906deeae9/minify_html-0.15.0-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:7a5eb7e830277762da69498ee0f15d4a9fa6e91887a93567d388e4f5aee01ec3", size = 2307936 },
-    { url = "https://files.pythonhosted.org/packages/c0/a4/0f03d1132428bc20ea289212ad42ba781530673b2096d13db200243c0317/minify_html-0.15.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:92375f0cb3b4074e45005e1b4708b5b4c0781b335659d52918671c083c19c71e", size = 2164201 },
-    { url = "https://files.pythonhosted.org/packages/71/94/6019e2e8054c4c8ad6200ab067445b09b22946360b544ed10699016cba55/minify_html-0.15.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:cda674cc68ec3b9ebf61f2986f3ef62de60ce837a58860c6f16b011862b5d533", size = 2240900 },
-    { url = "https://files.pythonhosted.org/packages/20/cd/5d786a1364c4eb8b6c8d934b2d9afc60d0abaf0c3f5bd1b121eb1ad343af/minify_html-0.15.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7b071ded7aacbb140a7e751d49e246052f204b896d69663a4a5c3a27203d27f6", size = 2395945 },
-    { url = "https://files.pythonhosted.org/packages/b8/87/34ff1b12748d5051e7907809fba7241ac3fb9ea2e3079dcb623d43c5f861/minify_html-0.15.0-cp39-none-win_amd64.whl", hash = "sha256:ef6dc1950e04b7566c1ece72712674416f86fef8966ca026f6c5580d840cd354", size = 2382566 },
 ]
 
 [[package]]
