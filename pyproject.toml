@@ -6,7 +6,7 @@ requires = [
 
 [project]
 name = "django-minify-html"
-version = "1.12.0"
+version = "1.13.0"
 description = "Use minify-html, the extremely fast HTML + JS + CSS minifier, with Django."
 readme = "README.rst"
 keywords = [
@@ -38,7 +38,7 @@ classifiers = [
 dependencies = [
   "asgiref>=3.6",
   "django>=4.2",
-  "minify-html",
+  "minify-html-fallback>=0.16.4",
 ]
 urls = { Changelog = "https://github.com/adamchainz/django-minify-html/blob/main/CHANGELOG.rst", Funding = "https://adamj.eu/books/", Repository = "https://github.com/adamchainz/django-minify-html" }
 

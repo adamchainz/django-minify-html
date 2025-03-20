@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Awaitable
 from typing import Callable
 
-import minify_html
+import minify_html_fallback
 from asgiref.sync import iscoroutinefunction
 from asgiref.sync import markcoroutinefunction
 from django.http import HttpRequest
@@ -51,7 +51,7 @@ class MinifyHtmlMiddleware:
         if self.should_minify(request, response):
             assert isinstance(response, HttpResponse)
             content = response.content.decode(response.charset)
-            minified_content = minify_html.minify(content, **self.minify_args)
+            minified_content = minify_html_fallback.minify(content, **self.minify_args)
             response.content = minified_content
             if "Content-Length" in response:
                 response["Content-Length"] = len(response.content)

@@ -148,7 +148,7 @@ But it is much slower, since it does the minification in Python.
 At time of writing, it is also unmaintained, with no release since March 2019.
 
 There are other minifiers out there, but in benchmarks `minify-html <https://github.com/wilsonzlin/minify-html>`__ surpasses them all.
-It’s a really well optimized and tested Rust library, and seems to be the best available HTML minifier.
+It’s a really well optimized and tested Rust library, and seems to be the best available HTML minifier. As of writing, it's been more than a year since `minify-html` was last released. This means that, among other things, pre-built wheels for Python 3.13 is not available in that package. For that reason, we depend `minify-html-fallback` (which is just a fork with more recent releases) until a new version of the main library is released again.
 
 Historically, Cloudflare provided automatic minification (`removed August 2024 <https://community.cloudflare.com/t/deprecating-auto-minify/655677>`__).
 This was convenient at the CDN layer, since it requires no application changes.

@@ -113,8 +113,8 @@ name = "django"
 version = "4.2.19"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version < '3.10'",
     "python_full_version >= '3.10'",
+    "python_full_version < '3.10'",
 ]
 dependencies = [
     { name = "asgiref" },
@@ -187,7 +187,7 @@ dependencies = [
     { name = "django", version = "5.0.12", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.10' and extra == 'group-18-django-minify-html-django50') or (extra == 'group-18-django-minify-html-django50' and extra == 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django50' and extra == 'group-18-django-minify-html-django52') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django50') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django52') or (extra == 'group-18-django-minify-html-django51' and extra == 'group-18-django-minify-html-django52')" },
     { name = "django", version = "5.1.6", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.10' and extra == 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django51' and extra == 'group-18-django-minify-html-django52') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django50') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django52') or (extra == 'group-18-django-minify-html-django50' and extra == 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django50' and extra == 'group-18-django-minify-html-django52')" },
     { name = "django", version = "5.2b1", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.10' and extra != 'group-18-django-minify-html-django42' and extra != 'group-18-django-minify-html-django50' and extra != 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django50') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django42' and extra == 'group-18-django-minify-html-django52') or (extra == 'group-18-django-minify-html-django50' and extra == 'group-18-django-minify-html-django51') or (extra == 'group-18-django-minify-html-django50' and extra == 'group-18-django-minify-html-django52') or (extra == 'group-18-django-minify-html-django51' and extra == 'group-18-django-minify-html-django52')" },
-    { name = "minify-html" },
+    { name = "minify-html-fallback" },
 ]
 
 [package.dev-dependencies]
@@ -215,7 +215,7 @@ test = [
 requires-dist = [
     { name = "asgiref", specifier = ">=3.6" },
     { name = "django", specifier = ">=4.2" },
-    { name = "minify-html" },
+    { name = "minify-html-fallback", specifier = ">=0.16.4" },
 ]
 
 [package.metadata.requires-dev]
@@ -287,6 +287,39 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/71/94/6019e2e8054c4c8ad6200ab067445b09b22946360b544ed10699016cba55/minify_html-0.15.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:cda674cc68ec3b9ebf61f2986f3ef62de60ce837a58860c6f16b011862b5d533", size = 2240900 },
     { url = "https://files.pythonhosted.org/packages/20/cd/5d786a1364c4eb8b6c8d934b2d9afc60d0abaf0c3f5bd1b121eb1ad343af/minify_html-0.15.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7b071ded7aacbb140a7e751d49e246052f204b896d69663a4a5c3a27203d27f6", size = 2395945 },
     { url = "https://files.pythonhosted.org/packages/b8/87/34ff1b12748d5051e7907809fba7241ac3fb9ea2e3079dcb623d43c5f861/minify_html-0.15.0-cp39-none-win_amd64.whl", hash = "sha256:ef6dc1950e04b7566c1ece72712674416f86fef8966ca026f6c5580d840cd354", size = 2382566 },
+]
+
+[[package]]
+name = "minify-html-fallback"
+version = "0.16.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/69/1b/e5cda58711b30d766fc7a0e6b75c03f37a13faf50082e1b1c30e61864589/minify_html_fallback-0.16.4.tar.gz", hash = "sha256:42eb8d43fbf9486dd51bc79c03a0d0ad0a67e04d25b2b1bccf617806e9c74adb", size = 88024 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0f/2d/a3b71e92020ce323f5aebb1920fd65b38a165e1589c3fb0d36fc14ddfe55/minify_html_fallback-0.16.4-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:f4233556376651653876b9b28f645c98f901106594e798fd761db7e0d4705692", size = 2460605 },
+    { url = "https://files.pythonhosted.org/packages/34/a4/6451ebee879a7768df58e6f1c2816b0962011e50c777642bded957ee3660/minify_html_fallback-0.16.4-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:7b8e58e5be6ee3ed0b3a0678e8182d8314b4396184c53fe0d6683ee991ca1e64", size = 2234732 },
+    { url = "https://files.pythonhosted.org/packages/9d/33/a11f093fbe3ebccfe48439a9621fcec28f91c369080eb2515f441934441f/minify_html_fallback-0.16.4-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:aa127b77489ecaece258b5f731740143f608dc17edea033be2897da1e46b4b51", size = 2287572 },
+    { url = "https://files.pythonhosted.org/packages/7c/c9/c73c244badbedd6bd27dc4108a09e56f5bb3063e33c2af8181967c3c4747/minify_html_fallback-0.16.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:dcc567434d4f3627315fd0045ce6075ac8f59711d6d997eee98d6ecdafba7c54", size = 2555174 },
+    { url = "https://files.pythonhosted.org/packages/8a/1d/de8484d30bb7a20b2d021c2be6bba97c99dda894a14103a0ae53987abcba/minify_html_fallback-0.16.4-cp310-cp310-win_amd64.whl", hash = "sha256:d5cceef5af8c9ef4971f6710d3534c85e480479256f0b2d077d4d5cf8ab776d5", size = 2538017 },
+    { url = "https://files.pythonhosted.org/packages/09/7c/da7b1106d4d7cc8643f870d35f872bdeecb98b44dfad4b2fcaf79e154307/minify_html_fallback-0.16.4-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:c8e5664e36308ae96593423437c9ece2249d4ebe8d649c6b65582c32e9fdf4e5", size = 2460768 },
+    { url = "https://files.pythonhosted.org/packages/e6/2a/034282a0e2e8eeb0eb750b7c6fdc17c761ce090e22330f38f4a02172c6ca/minify_html_fallback-0.16.4-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:f4eb1ac0746301ff271c2117b3c9285175037ab12774f4fa0843786c75254dae", size = 2235082 },
+    { url = "https://files.pythonhosted.org/packages/cd/6d/e27fc28ab87fa38aae71a4558dbd033b5b7887e587c5f7e060621be6b327/minify_html_fallback-0.16.4-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c37be4bd2a5dc4252daf66b4a20134f30064cd1dff8063cca5c40c80ee8127a3", size = 2287864 },
+    { url = "https://files.pythonhosted.org/packages/97/c2/3099aa208ac571e63594a75be05dba7fd19fb42f13766f451c4c3428ff4f/minify_html_fallback-0.16.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9784797a0a80fa89b9398a1510ebf4aecfd29c378f2c9172ca0fb18523ceb930", size = 2555248 },
+    { url = "https://files.pythonhosted.org/packages/00/f3/cf371f9ec0a25f270a454743eed5b26aed4b5aa68a3f76f0998056065cb0/minify_html_fallback-0.16.4-cp311-cp311-win_amd64.whl", hash = "sha256:907f49f1020f9b4e4302342a680b64466fe783198609dfbed6c7994e89b5b106", size = 2538009 },
+    { url = "https://files.pythonhosted.org/packages/1c/8c/5a2a6d675c5d0201a17439596be01c00370c1841a026eb1ba2b607d1f47f/minify_html_fallback-0.16.4-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:28116c447f79201747fc1ad7e66bd349d7d8d32d6e47679730f891faffe98701", size = 2460523 },
+    { url = "https://files.pythonhosted.org/packages/22/05/1db1ceec8f04330a46c7d13d68b148d002836781a022053283a2942b2e5d/minify_html_fallback-0.16.4-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:307d8af94c189881536ef03af085d77234d8b57b8082841a74b8713b3b029c66", size = 2234965 },
+    { url = "https://files.pythonhosted.org/packages/ce/5d/d385c955667f67f52cb947f1d9e38150c80e01873d6256aeb7f66ba5f651/minify_html_fallback-0.16.4-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1109e5cb2e24e1e451b224856d145bc21bcda5f39d517cdb95380c98a2d43f26", size = 2287566 },
+    { url = "https://files.pythonhosted.org/packages/67/71/faeec593174db9719632e09909d0c50338e054b53c094ffc179dbe006c69/minify_html_fallback-0.16.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e699797f7c2497a330f611759c3e9cb29aa78aadf424fb766f7855e6e8663bdd", size = 2555150 },
+    { url = "https://files.pythonhosted.org/packages/ce/37/804597b07c831fa1e76bfd871bd3d26f52a62c9347ccf786b95d7098a88a/minify_html_fallback-0.16.4-cp312-cp312-win_amd64.whl", hash = "sha256:b80f0bdbcda107efcb79cbf0f946b6eff48cab5206f72cb712c08fcab22ef02e", size = 2537778 },
+    { url = "https://files.pythonhosted.org/packages/a0/46/eb6821ace7af706b97abf0ad8ad4ac52a4558d474e58b77ed1accd0bef36/minify_html_fallback-0.16.4-cp313-cp313-macosx_10_12_x86_64.whl", hash = "sha256:db5d250674f3c382897f24e9ed9f0cdabee7a7cc1df30240cd8e8dc1667cd34f", size = 2460157 },
+    { url = "https://files.pythonhosted.org/packages/07/82/b18c361309cdfa721abda2b353e84598ac9eb2b56c84cc47d920905c94e0/minify_html_fallback-0.16.4-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:e246ab145b5b6d1c082efa92a25be8ed46c333f03d5cd49692071d5617cd74ac", size = 2234694 },
+    { url = "https://files.pythonhosted.org/packages/d8/cb/d8d650a07a89d4f9f34e59878fa2c0ad8dfb8696b7b5683a4b414387fdea/minify_html_fallback-0.16.4-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6efd7e8e9de4427c0cd4a7771e8df7f5d39b1b679cd1e42d7f6c9b3d92042e29", size = 2287245 },
+    { url = "https://files.pythonhosted.org/packages/50/f4/2489af54658ab14f8cc61007438b836aaa4bd397e410660eaea88dc6d4d0/minify_html_fallback-0.16.4-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e09c1a3acf1e2b9f75d0d8796b28425fc95d7d0ade33457fc9810bd941fb0e29", size = 2555039 },
+    { url = "https://files.pythonhosted.org/packages/41/9e/b4c94ea09a72a98b7dfe574ff932d024db2b756ee8b3f04b0d4a1978c921/minify_html_fallback-0.16.4-cp313-cp313-win_amd64.whl", hash = "sha256:98d5fca20d0b8ea3f31b88c64164ff00ff550986f0572f29258312102082bdb4", size = 2538045 },
+    { url = "https://files.pythonhosted.org/packages/3d/23/203ad64cdb2582f78792be317b3ac666a6200eff48e37c404e93ba9e7615/minify_html_fallback-0.16.4-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:82c0d6eef11f6089ccdea571db81dc836d9ff6e81461a727c70255371eab1c0f", size = 2461022 },
+    { url = "https://files.pythonhosted.org/packages/65/17/7f4b71108e363ac4af54fb6ab8e465491fab832ae8c1486d2a207532c898/minify_html_fallback-0.16.4-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:ac32b9b6cb8231a02cc4c69852885d877aa65f72aaaae25620b6520cf36a3e05", size = 2234632 },
+    { url = "https://files.pythonhosted.org/packages/aa/fe/372237dab7df03745a2b7ea886ebde3c2183eb00e76a2c090f0ff1f8a27e/minify_html_fallback-0.16.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4944dd73c922cc85f2c21b90100861cd5c147e22b8509883cf1e2a6a9005e94a", size = 2288010 },
+    { url = "https://files.pythonhosted.org/packages/c8/8e/a8e86ea71034d1212a748a8ee3046d64568bfa0ece4190032c9f7a49ed0b/minify_html_fallback-0.16.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:94c9167e82a3c271e33ce5e1a9bf46cb0dcf96feb92846c9ce9cb693813f25d9", size = 2555124 },
+    { url = "https://files.pythonhosted.org/packages/8e/2d/237d8bf99c7a45ce416472871d74c110ccc5c549fb9230b3aba2eb2661a2/minify_html_fallback-0.16.4-cp39-cp39-win_amd64.whl", hash = "sha256:2ada74a6d6719e7115c675e888fecaeca9b9ee277e229299dc2f1536811ca4a7", size = 2538053 },
 ]
 
 [[package]]
