@@ -2,6 +2,11 @@
 Changelog
 =========
 
+1.13.0 (2025-03-20)
+-------------------
+
+* Temporarily switch to using `minify-html-fallback` as to allow pre-built wheels on Python 3.13.
+
 1.12.0 (2025-02-06)
 -------------------
 
