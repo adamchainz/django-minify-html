@@ -6,6 +6,7 @@ from typing import Callable
 import minify_html
 from asgiref.sync import iscoroutinefunction
 from asgiref.sync import markcoroutinefunction
+from django.conf import settings
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http.response import HttpResponseBase
@@ -51,7 +52,9 @@ class MinifyHtmlMiddleware:
         if self.should_minify(request, response):
             assert isinstance(response, HttpResponse)
             content = response.content.decode(response.charset)
-            minified_content = minify_html.minify(content, **self.minify_args)
+            extra_args = getattr(settings, "MINIFY_HTML", {})
+            minify_args = self.minify_args | extra_args
+            minified_content = minify_html.minify(content, **minify_args)
             response.content = minified_content
             if "Content-Length" in response:
                 response["Content-Length"] = len(response.content)
