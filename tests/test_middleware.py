@@ -6,8 +6,9 @@ from django.test import SimpleTestCase
 from django.test import override_settings
 
 from django_minify_html.middleware import MinifyHtmlMiddleware
-from tests.views import basic_html, basic_html_minified_with_closing_tags
+from tests.views import basic_html
 from tests.views import basic_html_minified
+from tests.views import basic_html_minified_with_closing_tags
 
 
 class NoCssMiddleware(MinifyHtmlMiddleware):
@@ -88,4 +89,6 @@ class MinifyHtmlMiddlewareTests(SimpleTestCase):
             response = self.client.get("/html/")
 
         assert response.content == basic_html_minified_with_closing_tags
-        assert response["Content-Length"] == str(len(basic_html_minified_with_closing_tags))
+        assert response["Content-Length"] == str(
+            len(basic_html_minified_with_closing_tags)
+        )
