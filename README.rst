@@ -100,7 +100,7 @@ For example, to preserve comments after minification:
 The middleware applies to all non-streaming, non-encoded HTML responses.
 You can skip it on individual views with the ``@no_html_minification`` decorator, documented below.
 
-To restrict it more broadly, you can use a subclass with an overriden ``should_minify()`` method.
+To restrict it more broadly, you can use a subclass with an overridden ``should_minify()`` method.
 This method accepts the ``request`` and ``response``, and returns a ``bool``.
 For example, to avoid minification of URL’s with the URL prefix ``/admin/``:
 
@@ -140,7 +140,7 @@ Apply this decorator to views for which you want to skip HTML minification.
 Motivation
 ----------
 
-HTML minification is an underappreciated techinque for web optimization.
+HTML minification is an underappreciated technique for web optimization.
 It can yield significant savings, even on top of other tools like compression with Brotli or Gzip.
 
 There is an existing package for HTML minification in Django, `django-htmlmin <https://pypi.org/project/django-htmlmin/>`__.
