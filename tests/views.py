@@ -7,6 +7,7 @@ from django_minify_html.decorators import no_html_minification
 
 basic_html = "<!doctype html><html><body><p>Hi 👋</p></body></html>".encode()
 basic_html_minified = "<!doctype html><body><p>Hi 👋".encode()
+basic_html_minified_with_closing_tags = "<!doctype html><body><p>Hi 👋</p></body>".encode()
 
 
 def streaming(request):
