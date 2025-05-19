@@ -4,10 +4,8 @@ from collections.abc import Awaitable
 from typing import Callable
 
 import minify_html
-from asgiref.sync import iscoroutinefunction
-from asgiref.sync import markcoroutinefunction
-from django.http import HttpRequest
-from django.http import HttpResponse
+from asgiref.sync import iscoroutinefunction, markcoroutinefunction
+from django.http import HttpRequest, HttpResponse
 from django.http.response import HttpResponseBase
 
 

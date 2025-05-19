@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from django.http import HttpResponse
-from django.http import StreamingHttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 
 from django_minify_html.decorators import no_html_minification
 

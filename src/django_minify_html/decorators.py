@@ -1,10 +1,7 @@
 from __future__ import annotations
 
 from functools import wraps
-from typing import Any
-from typing import Callable
-from typing import TypeVar
-from typing import cast
+from typing import Any, Callable, TypeVar, cast
 
 from asgiref.sync import iscoroutinefunction
 from django.http.response import HttpResponseBase
