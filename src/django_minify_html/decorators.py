@@ -28,6 +28,6 @@ def no_html_minification(view_func: _C) -> _C:
         def wrapped_view(*args: Any, **kwargs: Any) -> Any:
             return view_func(*args, **kwargs)
 
-    wrapped_view.should_minify_html = False  # type: ignore[attr-defined]
+    wrapped_view.should_minify_html = False  # type: ignore[union-attr]
 
     return cast(_C, wraps(view_func)(wrapped_view))
