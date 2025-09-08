@@ -29,7 +29,7 @@ Use `minify-html <https://github.com/wilsonzlin/minify-html>`__, the extremely f
 Requirements
 ------------
 
-Python 3.9 to 3.13 supported.
+Python 3.9 to 3.14 supported.
 
 Django 4.2 to 5.2 supported.
 
