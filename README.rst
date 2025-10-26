@@ -141,7 +141,7 @@ Motivation
 ----------
 
 HTML minification is an underappreciated technique for web optimization.
-It can yield significant savings, even on top of other tools like compression with Brotli or Gzip.
+It can yield significant savings, even on top of other tools like HTTP compression (try `django-http-compression <https://pypi.org/project/django-http-compression/>`__ for that.)
 
 There is an existing package for HTML minification in Django, `django-htmlmin <https://pypi.org/project/django-htmlmin/>`__.
 But it is much slower, since it does the minification in Python.
