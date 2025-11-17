@@ -29,7 +29,7 @@ Use `minify-html <https://github.com/wilsonzlin/minify-html>`__, the extremely f
 Requirements
 ------------
 
-Python 3.9 to 3.14 supported.
+Python 3.10 to 3.14 supported.
 
 Django 4.2 to 6.0 supported.
 
@@ -95,7 +95,7 @@ For example, to preserve comments after minification:
             "keep_comments": True,
         }
 
-(This example uses Python 3.9’s `dictionary merge operator <https://docs.python.org/3.9/whatsnew/3.9.html#dictionary-merge-update-operators>`__.)
+(This example uses `the dictionary merge operator <https://docs.python.org/3.9/whatsnew/3.9.html#dictionary-merge-update-operators>`__.)
 
 The middleware applies to all non-streaming, non-encoded HTML responses.
 You can skip it on individual views with the ``@no_html_minification`` decorator, documented below.
